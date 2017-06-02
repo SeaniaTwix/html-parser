@@ -8,6 +8,7 @@ interface RNode {
     innerHTML: string;
     children: Array<RNode>;
     infos: RInfos;
+    match: string;
 }
 
 interface HTMLParserStatic {
