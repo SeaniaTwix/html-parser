@@ -124,9 +124,14 @@ function findNextNode(html: string, parent: any, next?: Function): void {
                         globalIndex = node.infos.end;
                         let leftHtml = html.substring(0, endNode.infos.index);
                         findNextNode(leftHtml, node, () => {
-                            node.infos.end = endNode.infos.end;
-                            globalIndex = endNode.infos.end;
-                            moveNext();
+                            try {
+                                node.infos.end = endNode.infos.end;
+                                globalIndex = endNode.infos.end;
+                                moveNext();
+                            } catch (err) {
+                                // infinite loop error
+                                console.log('error');
+                            }
                         });
                     }
                     else {
